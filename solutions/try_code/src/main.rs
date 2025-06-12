@@ -1,7 +1,4 @@
 fn main() {
-    let x = 5;
-    println!("The value of x is: {}", x);
-    let mut x = x;
-    x = 6 ; 
-    println!("The value of x is: {}", x);
+    let var = 10;
+    println!("{}", std::any::type_name_of_val(&var));
 }
