@@ -1,7 +1,7 @@
 pub fn factorial(num: u64) -> u64 {
-    if num == 0 {
-        1
-    } else {
-        num * factorial(num - 1)
+    let mut result : u64 = 1 ; 
+    for n in 1..num {
+        result = result*n 
     }
+    result * num 
 }

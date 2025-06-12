@@ -1,26 +1,26 @@
-use std::io;
+use std::io ;
 
-const RIDDLE: &str = "I am the beginning of the end, and the end of time and space. I am essential to creation, and I surround every place. What am I?";
-const ANSWER: &str = "The letter e\n";
+fn main(){
+ 
+    let riddle = "I am the beginning of the end, and the end of time and space. I am essential to creation, and I surround every place. What am I?";
 
-fn main() {
-    let mut trials = 0;
+    let mut trials : u32 = 0 ; 
+
+    let answer  = "The letter e\n";
 
     loop {
-        println!("{}", RIDDLE);
+        print!("{}", riddle);
+        let mut guess  = String::new();
 
-        let mut input = String::new();
+        io::stdin().read_line(&mut guess).expect("error reading the line!");
 
-        io::stdin()
-            .read_line(&mut input)
-            .expect("Couldn't read line");
+        trials += 1 ; 
 
-        trials += 1;
 
-        if input == ANSWER {
-            break;
+        if guess == answer {
+            println!("Number of trials: {}", trials );
+                return ; 
         }
     }
-
-    println!("Number of trials: {trials}");
 }
+

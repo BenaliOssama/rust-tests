@@ -1,6 +1,9 @@
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug)]
 pub struct Matrix(pub (i32, i32), pub (i32, i32));
 
+
 pub fn transpose(m: Matrix) -> Matrix {
-    Matrix(((m.0).0, (m.1).0), ((m.0).1, (m.1).1))
+    // `let` can be used to bind the members of a tuple to variables.
+    let Matrix((a, b), (c,d))  = m;
+    Matrix((a,c),(b,d))
 }
