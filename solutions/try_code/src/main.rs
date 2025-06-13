@@ -1,9 +1,11 @@
-fn main(){
-    let mut s = String::from("hello");
-    let r1 = &mut s;
-    let r2 = &mut s;
-    let r3 = &mut s;
-    let r4 = &mut s;
-    let r5 = &mut s;
-    println!("{}", r5);
+fn main() {
+    let a = [1, 2, 3, 4, 5];
+    let slice = &a[1..3]; // [2, 3]
+
+    // This will pass silently
+    assert_eq!(slice, &[2, 3]);
+
+    // This will fail and SHOW the debug output
+    assert_eq!(slice, &[3, 4]);
 }
+
