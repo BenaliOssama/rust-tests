@@ -1,4 +1,9 @@
-fn main() {
-    let var = 10;
-    println!("{}", std::any::type_name_of_val(&var));
+fn main(){
+    let mut s = String::from("hello");
+    let r1 = &mut s;
+    let r2 = &mut s;
+    let r3 = &mut s;
+    let r4 = &mut s;
+    let r5 = &mut s;
+    println!("{}", r5);
 }
