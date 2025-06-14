@@ -1,18 +1,18 @@
-pub fn initials(names: Vec<&str>) -> Vec<String> {
-    let mut ni : Vec<String> = Vec::new() ; 
 
-    for name in names {
-        // 
-        let first_last = n.split(' ');
-        let mut one : String::New() ; 
-        for s in first_last {
-                one.push(s.prefix()) 
-            if index < fist_last.len() {
-                one.push(". ")
-            }
-            
-        }
-        ni.push(n.to_string());
-    }
-    ni
+pub fn initials(names: Vec<&str>) -> Vec<String> {
+    let result: Vec<String> = names.iter()
+        .map(|name| name_initial(name))
+        .collect();
+    result
 }
+
+fn name_initial(s: &str)-> String {
+
+    let (first, last) = s.split_once(' ').unwrap();
+
+    let initial = format!("{}. {}.", first.chars().next().unwrap(), last.chars().next().unwrap());
+    
+    String::from(initial)
+
+}
+

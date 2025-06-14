@@ -1,11 +1,21 @@
 fn main() {
-    let a = [1, 2, 3, 4, 5];
-    let slice = &a[1..3]; // [2, 3]
+    let names = vec!["Harry Potter", "Someone Else", "J. L.", "Barack Obama"];
+    let result: Vec<String> = names.into_iter()
+        .map(|name| name_initial(name))
+        .collect();
 
-    // This will pass silently
-    assert_eq!(slice, &[2, 3]);
+    println!("{:?}", result);
+}
 
-    // This will fail and SHOW the debug output
-    assert_eq!(slice, &[3, 4]);
+
+
+fn name_initial(s: &str)-> String {
+
+    let (first, last) = s.split_once(' ').unwrap();
+
+    let initial = format!("{}. {}.", first.chars().next().unwrap(), last.chars().next().unwrap());
+    
+    String::from(initial)
+
 }
 
