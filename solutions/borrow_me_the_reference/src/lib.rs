@@ -21,4 +21,17 @@ pub fn delete_and_backspace(s: &mut String) {
 }
 
 pub fn do_operations(v: &mut [String]) {
+    for line in v {
+        if line.contains('+') {
+            let (num1, num2) = line.split_once('+').unwrap();
+            let first: i32 = num1.parse().unwrap();
+            let last: i32 = num2.parse().unwrap();
+            *line = (first + last).to_string();
+        }else if line.contains('-') {
+            let (num1, num2) = line.split_once('-').unwrap();
+            let first: i32 = num1.parse().unwrap();
+            let last: i32 = num2.parse().unwrap();
+            *line = (first - last).to_string();
+        }
+    }
 }
