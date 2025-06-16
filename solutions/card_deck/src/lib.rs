@@ -3,10 +3,10 @@ use rand::Rng;
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum Suit {
-    Hearts,
-    Diamonds,
-    Clubs,
-    Spades,
+    Heart,
+    Diamond,
+    Club,
+    Spade,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -21,21 +21,21 @@ pub enum Rank {
 impl Suit {
     pub fn random() -> Suit {
         let random_number = rand::thread_rng().gen_range(0..4);
-        let suits = [Suit::Hearts, Suit::Diamonds, Suit::Clubs, Suit::Spades];
+        let suits = [Suit::Heart, Suit::Diamond, Suit::Club, Suit::Spade];
         suits[random_number]
     }
 // (u8) to a suit (1 -> Heart, 2 -> Diamonds, 3 -> Spade, 4 -> Club).
     pub fn translate(value: u8) -> Suit {
         if value == 1 {
-            return Suit::Hearts;
+            return Suit::Heart;
         }else if value == 2{
-            return Suit::Diamonds;
+            return Suit::Diamond;
         }else if value == 3{
-            return Suit::Spades;
+            return Suit::Spade;
         }else if value == 4{
-            return Suit::Clubs;
+            return Suit::Club;
         }
-        Suit::Hearts 
+        Suit::Heart 
     }
 }
 
@@ -92,12 +92,12 @@ impl Rank {
     }
 }
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Card {
     pub suit: Suit,
     pub rank: Rank,
 }
 
 pub fn winner_card(card: &Card) -> bool {
-    card.suit == Suit::Spades && card.rank == Rank::Ace
+    card.suit == Suit::Spade && card.rank == Rank::Ace
 }
