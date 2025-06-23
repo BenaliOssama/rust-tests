@@ -1,5 +1,6 @@
-fn main() {
-    for b in "Зд".bytes() {
-    println!("{b}");
-}
+fn main(){
+    let mut x : u32 = 22 ;
+    let y : &u32 = &x;
+    x += 1;
+    println!("{}",y);
 }
