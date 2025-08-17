@@ -16,10 +16,24 @@ impl fmt::Display for Table {
         for (i, header) in self.headers.iter().enumerate(){
             let max = self.find_max(i) + 2;
             write!(f, "|{:^1$}",header, max );
-            //line.push("-".repeat(max) + "+")
+            line.push_str(&("-".repeat(max).to_string() + "+"));
         }
-        writeln!(f, "|");
+        write!(f, "|\n");
+        let line = line.strip_suffix("+").unwrap();
+        writeln!(f, "{}", line.to_string() + "|");
+        
         /*_____________body_________________________*/
+        for (j, row) in self.body.iter().enumerate() {
+            for (i, line) in row.iter().enumerate(){
+                let max = self.find_max(i) + 2;
+                write!(f, "|{:^1$}",line, max );
+            }
+            if j != self.body.len() -1 {
+                write!(f, "|\n");
+            }else{
+                write!(f,"|");
+            }
+        }
         Ok(())
     }
 }
@@ -27,7 +41,7 @@ impl fmt::Display for Table {
 
 impl Table {
     pub fn new() -> Table {
-        return Table{headers: vec![], body: vec![vec![]]};
+        return Table{headers: vec![], body: vec![]};
     }
     pub fn add_row(&mut self, row: &[String]) {
         self.body.push(row.to_vec());
