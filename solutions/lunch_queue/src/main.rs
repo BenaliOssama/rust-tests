@@ -18,7 +18,6 @@ fn main() {
     println!("invert {:?}", list);
 }
 
-
 // use lunch_queue::*;
 //
 // // Example :
