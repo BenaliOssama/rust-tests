@@ -35,7 +35,10 @@ impl Queue {
         if self.node.is_none() {
             return 
         }
-        self.node = invert_helper(self.node.clone(), self.node.clone().unwrap().next_person )
+        let mut first = self.node.clone().unwrap(); 
+        let mut second = self.node.clone().unwrap().next_person; 
+        first.next_person = None;
+        self.node = invert_helper(Some(first), second);
     }
     pub fn rm(&mut self) -> Option<(String, i32)> {
         if self.node.is_none(){
