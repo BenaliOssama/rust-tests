@@ -1,4 +1,5 @@
 use std::fmt;
+use std::cmp::max;
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Table {
@@ -8,13 +9,14 @@ pub struct Table {
 
 impl fmt::Display for Table {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        if self.body.len() == 0 {
+        if self.headers.len() == 0 {
+            write!(f, "");
             return Ok(());
         }
         /*_____________header______________________*/
         let mut line = String::from("|");
         for (i, header) in self.headers.iter().enumerate(){
-            let max = self.find_max(i) + 2;
+            let max = max(self.find_max(i), header.len()) + 2;
             write!(f, "|{:^1$}",header, max );
             line.push_str(&("-".repeat(max).to_string() + "+"));
         }
@@ -25,14 +27,14 @@ impl fmt::Display for Table {
         /*_____________body_________________________*/
         for (j, row) in self.body.iter().enumerate() {
             for (i, line) in row.iter().enumerate(){
-                let max = self.find_max(i) + 2;
+                let max = max(self.find_max(i), self.headers[i].len()) + 2;
                 write!(f, "|{:^1$}",line, max );
             }
-            if j != self.body.len() -1 {
+            // if j != self.body.len() -1 {
                 write!(f, "|\n");
-            }else{
-                write!(f,"|");
-            }
+            // }else{
+            //     write!(f,"|");
+            // }
         }
         Ok(())
     }
@@ -58,3 +60,6 @@ impl Table {
         return max;
     }
 }
+
+
+
